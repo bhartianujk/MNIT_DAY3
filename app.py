@@ -4,9 +4,15 @@ import numpy as np
 from tensorflow import keras
 from PIL import Image
 import io
-
+from fastapi.middleware.cors import CORSMiddleware
 app = FastAPI()
-
+app.add_middleware(
+        CORSMiddleware,
+        allow_origins=["*"],
+        allow_credentials=True,
+        allow_methods=["*"],
+        allow_headers=["*"],
+)
 # Load trained model
 model = keras.models.load_model("mnist_cnn_model.h5")
 
